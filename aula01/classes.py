@@ -25,12 +25,12 @@ class Pessoa():
         if self.falando == True:
             self.falando = False
             print(f"{self.nome} não está hablando")
-        elif self.falando == False:
-            print(f"{self.nome} se calou")
         elif self.comendo==True:
             print(f"{self.nome} não pode parar de falar, pois está comendo")
         elif self.dormindo == True:
             print(f"{self.nome} não pode parar de falar, pois está dormindo")
+        elif self.falando == False:
+            print(f"{self.nome} se calou")
 
     def comer(self, alimento):
         if self.comendo== False and self.falando== False and self.dormindo== False:
@@ -49,12 +49,12 @@ class Pessoa():
         if self.comendo == True:
             self.comendo = False
             print(f"{self.nome} não está comendo")
-        elif self.comendo == False:
-            print(f"{self.nome} fechou a boca")
         elif self.falando==True:
             print(f"{self.nome} não pode parar de comer, pois está falando")
         elif self.dormindo == True:
             print(f"{self.nome} não pode parar de comer, pois está dormindo")
+        elif self.comendo == False:
+            print(f"{self.nome} fechou a boca")
 
 
     def dormir(self, sonequinha):
@@ -75,9 +75,9 @@ class Pessoa():
         if self.dormindo == True:
             self.dormindo = False
             print(f"{self.nome} não está dormindo")
-        elif self.dormindo == False:
-            print(f"{self.nome} levantou a cabeça")
         elif self.falando==True:
             print(f"{self.nome} não pode parar de dormir, pois está falando")
         elif self.comendo == True:
             print(f"{self.nome} não pode parar de dormir, pois está comendo")
+        elif self.dormindo == False:
+            print(f"{self.nome} levantou a cabeça")
