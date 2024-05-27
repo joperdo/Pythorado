@@ -1,88 +1,186 @@
-class PedraPapelTesoura:
+class JogoDaVeia():
     def __init__(self, jogador1, jogador2):
         self.jogador1 = jogador1
         self.jogador2 = jogador2
-        self.jogada1 = ""
-        self.jogada2 = ""
+        self.escolhaDoJogador1 = "X"
+        self.escolhaDoJogador2 = "O"
 
     def resultado(self):
+        matriz = [
+            ["1", "2", "3"],
+            ["4", "5", "6"],
+            ["7", "8", "9"]
+        ]
 
-        decisao = 1
+        listaDeJogada = []
         rodadas = 1
-        vitoria1 = 0
-        vitoria2 = 0
+        vitoriaDoJogador1 = 0
+        vitoriaDoJogador2 = 0
 
-        while decisao == 1:
+        print(f"{self.jogador1} = X \n{self.jogador2} = O")
+        for x in range(0, 3):
+            for y in range(0, 3):
+                print(matriz[x][y], end="")
+            print()
 
-            while rodadas != 4:
+        while rodadas <=3:
 
-                if vitoria1 == 2 or vitoria2 == 2:
-                    break
+            if vitoriaDoJogador1 == 2:
+                print(f"vitoria do {self.jogador1}")
+                break
+            elif vitoriaDoJogador2 == 2:
+                print(f"vitoria do {self.jogador2}")
+                break
 
-                print(f"inicio da {rodadas}º rodada:")
+            print(f"inicio da {rodadas} rodada:")
+            rodadas +=1
 
-                jogadaDoJogador1 = input(f"qual é a sua {self.jogador1}?").lower()
-                while jogadaDoJogador1 not in ["pedra", "papel", "tesoura"]:
-                    jogadaDoJogador1 = input("jogada inválida. escreva pedra, papel e tesoura: ").lower()
+            for rodada in range(9):
 
-                jogadaDoJogador2 = input(f"qual é a sua {self.jogador2}?").lower()
-                while jogadaDoJogador2 not in ["pedra", "papel", "tesoura"]:
-                    jogadaDoJogador2 = input("jogada inválida. escreva pedra, papel e tesoura: ").lower()
+            # Jogador 1
+                jogadaDoJogador1 = input(f"escolha entre 1 e 9 \nqual é a sua jogada {self.jogador1}: ")
 
-                if jogadaDoJogador1 == jogadaDoJogador2:
-                    print(f"empate")
-                    print(f"{self.jogador1} - {vitoria1} X {vitoria2} - {self.jogador2}")
+                while jogadaDoJogador1 in listaDeJogada:
+                    jogadaDoJogador1 = input(f"essa jogada já foi escolhida. \nqual é a sua jogada {self.jogador1}: ")
 
-                elif jogadaDoJogador1 == "pedra" and jogadaDoJogador2 == "papel":
-                    vitoria2 += 1
-                    print(f"papel venceu \n{self.jogador2} venceu")
-                    print(f"{self.jogador1} - {vitoria1} X {vitoria2} - {self.jogador2}")
+                while jogadaDoJogador1 not in ["1", "2", "3", "4", "5", "6", "7", "8", "9"]:
+                        jogadaDoJogador1 = input(f"jogada inválida, tente novamente. \nqual é a sua jogada {self.jogador1}: ")
 
-                elif jogadaDoJogador1 == "pedra" and jogadaDoJogador2 == "tesoura":
-                    vitoria1 += 1
-                    print(f"pedra venceu \n{self.jogador1} venceu")
-                    print(f"{self.jogador1} - {vitoria1} x {vitoria2} - {self.jogador2}")
+                listaDeJogada.append(jogadaDoJogador1)
+                print(listaDeJogada)
 
-                elif jogadaDoJogador1 == "papel" and jogadaDoJogador2 == "pedra":
-                    vitoria1 += 1
-                    print(f"papel venceu \n{self.jogador1} venceu")
-                    print(f"{self.jogador1} - {vitoria1} x {vitoria2} - {self.jogador2}")
+                #Posição da jogada do jogador 01
 
-                elif jogadaDoJogador1 == "papel" and jogadaDoJogador2 == "tesoura":
-                    vitoria2 += 1
-                    print(f"tesoura venceu \n{self.jogador2} venceu")
-                    print(f"{self.jogador1} - {vitoria1} x {vitoria2} - {self.jogador2}")
+                if jogadaDoJogador1 == "1":
+                    matriz[0][0] = self.escolhaDoJogador1
+                elif jogadaDoJogador1 == "2":
+                    matriz[0][1] = self.escolhaDoJogador1
+                elif jogadaDoJogador1 == "3":
+                    matriz[0][2] = self.escolhaDoJogador1
+                elif jogadaDoJogador1 == "4":
+                    matriz[1][0] = self.escolhaDoJogador1
+                elif jogadaDoJogador1 == "5":
+                    matriz[1][1] = self.escolhaDoJogador1
+                elif jogadaDoJogador1 == "6":
+                    matriz[1][2] = self.escolhaDoJogador1
+                elif jogadaDoJogador1 == "7":
+                    matriz[2][0] = self.escolhaDoJogador1
+                elif jogadaDoJogador1 == "8":
+                    matriz[2][1] = self.escolhaDoJogador1
+                elif jogadaDoJogador1 == "9":
+                    matriz[2][2] = self.escolhaDoJogador1
 
-                elif jogadaDoJogador1 == "tesoura" and jogadaDoJogador2 == "pedra":
-                    vitoria2 += 1
-                    print(f"pedra venceu \n{self.jogador2} venceu")
-                    print(f"{self.jogador1} - {vitoria1} x {vitoria2} - {self.jogador2}")
+                # Verificar se o jogador 1 venceu
+                if rodada >= 2:
+                    if (matriz[0][0] == "X" and matriz[0][1] == "X" and matriz[0][2] == "X") \
+                        or (matriz[1][0] == "X" and matriz[1][1] == "X" and matriz[1][2] == "X") \
+                        or (matriz[2][0] == "X" and matriz[2][1] == "X" and matriz[2][2] == "X") \
+                        or (matriz[0][0] == "X" and matriz[1][0] == "X" and matriz[2][0] == "X") \
+                        or (matriz[0][1] == "X" and matriz[1][1] == "X" and matriz[2][1] == "X") \
+                        or (matriz[0][2] == "X" and matriz[1][2] == "X" and matriz[2][2] == "X") \
+                        or (matriz[0][0] == "X" and matriz[1][1] == "X" and matriz[2][2] == "X") \
+                        or (matriz[0][2] == "X" and matriz[1][1] == "X" and matriz[2][0] == "X"):
 
-                elif jogadaDoJogador1 == "tesoura" and jogadaDoJogador2 == "papel":
-                    vitoria1 += 1
-                    print(f"tesoura venceu \n{self.jogador1} venceu")
-                    print(f"{self.jogador1} - {vitoria1} x {vitoria2} - {self.jogador2}")
+                            print(f"{self.jogador1} venceu")
+                            vitoriaDoJogador1 += 1
+                            print(f"{self.jogador1} - {vitoriaDoJogador1} X {vitoriaDoJogador2} - {self.jogador2}")
+                            matriz = [
+                                ["1", "2", "3"],
+                                ["4", "5", "6"],
+                                ["7", "8", "9"]
+                            ]
 
-                rodadas += 1
+                            listaDeJogada = []
 
-            else:
-                if vitoria1 > vitoria2:
-                    print(f"{self.jogador1} venceu")
+                            for x in range(0, 3):
+                                for y in range(0, 3):
+                                    print(matriz[x][y], end="")
+                                print()
+                            print()
+                            break
+                elif rodada == 9:
+                    print("empate")
 
-                elif vitoria2 == 3:
-                    print(f"{self.jogador2} venceu")
+                for x in range(0, 3):
+                    for y in range(0, 3):
+                        print(matriz[x][y], end="")
+                    print()
 
-                else:
-                    print("empate no jogo")
+                # Jogador 2
 
-            decisao = int(input("jogar novamente: 1-sim 2-não"))
+                jogadaDoJogador2 = input(f"qual é a sua jogada {self.jogador2}: ")
 
-            while decisao <= 0 or decisao > 2:
-                decisao = int(input("escolha: 1-sim 2-não"))
+                while jogadaDoJogador2 in listaDeJogada:
+                    jogadaDoJogador2 = input(f"essa jogada já foi escolhida. \nqual é a sua jogada {self.jogador2}: ")
 
-            if decisao == 1:
-                vitoria1 = 0
-                vitoria2 = 0
-                rodadas = 1
-            else:
-                print("saindo")
+                while jogadaDoJogador2 not in ["1", "2", "3", "4", "5", "6", "7", "8", "9"]:
+                    jogadaDoJogador2 = input(f"jogada inválida, tente novamente. \nqual é a sua jogada {self.jogador2}: ")
+
+                listaDeJogada.append(jogadaDoJogador2)
+                print(listaDeJogada)
+
+                # Posição da jogada do jogador 02
+
+                if jogadaDoJogador2 == "1":
+                    matriz[0][0] = self.escolhaDoJogador2
+                elif jogadaDoJogador2 == "2":
+                    matriz[0][1] = self.escolhaDoJogador2
+                elif jogadaDoJogador2 == "3":
+                    matriz[0][2] = self.escolhaDoJogador2
+                elif jogadaDoJogador2 == "4":
+                    matriz[1][0] = self.escolhaDoJogador2
+                elif jogadaDoJogador2 == "5":
+                    matriz[1][1] = self.escolhaDoJogador2
+                elif jogadaDoJogador2 == "6":
+                    matriz[1][2] = self.escolhaDoJogador2
+                elif jogadaDoJogador2 == "7":
+                    matriz[2][0] = self.escolhaDoJogador2
+                elif jogadaDoJogador2 == "8":
+                    matriz[2][1] = self.escolhaDoJogador2
+                elif jogadaDoJogador2 == "9":
+                    matriz[2][2] = self.escolhaDoJogador2
+
+                # Verificar se o jogador 2 venceu
+
+                if rodada >= 2:
+                    if (matriz[0][0] == "O" and matriz[0][1] == "O" and matriz[0][2] == "O") \
+                        or (matriz[1][0] == "O" and matriz[1][1] == "O" and matriz[1][2] == "O") \
+                        or (matriz[2][0] == "O" and matriz[2][1] == "O" and matriz[2][2] == "O") \
+                        or (matriz[0][0] == "O" and matriz[1][0] == "O" and matriz[2][0] == "O") \
+                        or (matriz[0][1] == "O" and matriz[1][1] == "O" and matriz[2][1] == "O") \
+                        or (matriz[0][2] == "O" and matriz[1][2] == "O" and matriz[2][2] == "O") \
+                        or (matriz[0][0] == "O" and matriz[1][1] == "O" and matriz[2][2] == "O") \
+                        or (matriz[0][2] == "O" and matriz[1][1] == "O" and matriz[2][0] == "O"):
+                        print(f"{self.jogador2} Venceu")
+                        vitoriaDoJogador2 += 1
+                        print(f"{self.jogador1} - {vitoriaDoJogador1} X {vitoriaDoJogador2} - {self.jogador2}")
+
+                        matriz = [
+                            ["1", "2", "3"],
+                            ["4", "5", "6"],
+                            ["7", "8", "9"]
+                        ]
+
+                        listaDeJogada = []
+
+                        for x in range(0, 3):
+                            for y in range(0, 3):
+                                print(matriz[x][y], end="")
+                            print()
+                        print()
+                        break
+
+                elif rodada == 9:
+                    print("empate")
+
+                for x in range(0, 3):
+                    for y in range(0, 3):
+                        print(matriz[x][y], end="")
+                    print()
+        else:
+            if vitoriaDoJogador1 < vitoriaDoJogador2:
+                print(f"vitoria do {jogadaDoJogador2}")
+            elif vitoriaDoJogador1 > vitoriaDoJogador2:
+                print(f"vitoria do {jogadaDoJogador1}")
+            elif vitoriaDoJogador1 == vitoriaDoJogador2:
+                print(f"jogo encerrado em empate")

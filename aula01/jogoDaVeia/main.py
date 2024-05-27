@@ -1,5 +1,5 @@
 from classes import *
 
-p1 = PedraPapelTesoura("jorpy", "esmel")
+p1 = JogoDaVeia("Jorpy","Esmel")
 
 p1.resultado()
